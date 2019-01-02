@@ -1,13 +1,20 @@
 <template>
-  <HelloWorld />
+  <v-container fluid>
+    <v-layout>
+      <v-flex>
+        <h1>This is home page</h1>
+        <h3>{{ testUrl }}</h3>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
-
   export default {
-    components: {
-      HelloWorld
-    }
+    data() {
+      return {
+        testUrl: process.env.VUE_APP_API,
+      };
+    },
   }
 </script>
