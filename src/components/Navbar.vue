@@ -52,10 +52,20 @@
             <v-list-tile
               v-for="(catChild, i) in item.subNav"
               :key="i"
-              :to="catChild.url"
               active-class="grey--text text--darken-2"
             >
-              <v-list-tile-title>{{ catChild.title }}</v-list-tile-title>
+              <template v-if="catChild.internalUrl">
+                <router-link :to="catChild.internalUrl">
+                  <v-list-tile-title class="grey--text text--darken-2">
+                    {{ catChild.title }}
+                  </v-list-tile-title>
+                </router-link>
+              </template>
+              <template v-else>
+                <a class="grey--text text--darken-2" :href="catChild.url">
+                  <v-list-tile-title>{{ catChild.title }}</v-list-tile-title>
+                </a>
+              </template>
             </v-list-tile>
           </template>
 
@@ -80,27 +90,237 @@ export default {
           subNav: [
             {
               title: 'Settings',
-              url: '/',
+              url: 'https://stg-portal.futuready.com/portal/userlist',
             },
             {
               title: 'API Key Management',
-              url: '/',
+              url: 'https://stg-portal.futuready.com/portal/apikeylist',
             },
           ],
         },
-        { title: 'Data', icon: 'flaticon-layers', url: '/about' },
-        { title: 'Import Transaction', icon: 'flaticon-download', url: '/about' },
-        { title: 'Page', icon: 'find_in_page', url: '/about' },
-        { title: 'Engagement Services', icon: 'flaticon-network', url: '/about' },
-        { title: 'Operation', icon: 'flaticon-graphic', url: '/about' },
-        { title: 'Legal & Risk', icon: 'flaticon-light', url: '/about' },
-        { title: 'Finance', icon: 'flaticon-line-graph', url: '/about' },
-        { title: 'Profile', icon: 'flaticon-users', url: '/about' },
-        { title: 'Channel', icon: 'flaticon-computer', url: '/about' },
-        { title: 'Engagement Approach', icon: 'flaticon-interface-7', url: '/about' },
-        { title: 'Others', icon: 'flaticon-signs-2', url: '/about' },
-        { title: 'Human Resource', icon: 'flaticon-list-3', url: '/about' },
-        { title: 'Core', icon: 'storage', url: '/about' },
+        {
+          title: 'Data',
+          icon: 'flaticon-layers',
+          url: '/about',
+          subNav: [
+            {
+              title: 'Transaction Data',
+              url: 'https://stg-portal.futuready.com/portal/transactiondata',
+            },
+            {
+              title: 'Leads Data',
+              url: 'https://stg-portal.futuready.com/portal/dataleads',
+            },
+            {
+              title: 'Transaction Log',
+              url: 'https://stg-portal.futuready.com/portal/csdashboarddatalog',
+            },
+            {
+              title: 'Operation Transaction Report',
+              url: 'https://stg-portal.futuready.com/portal/operationTransactionReport',
+            },
+          ],
+        },
+        {
+          title: 'Import Transaction',
+          icon: 'flaticon-download',
+          url: '/about',
+          subNav: [
+            {
+              title: 'Import Travel',
+              url: 'https://stg-portal.futuready.com/portal/importtravel',
+            },
+            {
+              title: 'Import Vehicle',
+              url: 'https://stg-portal.futuready.com/portal/importvehicle',
+            },
+          ],
+        },
+        {
+          title: 'Page',
+          icon: 'find_in_page',
+          url: '/about',
+          subNav: [
+            {
+              title: 'Product',
+              url: 'https://stg-portal.futuready.com/portal/pageproduct',
+            },
+            {
+              title: 'Product Plan',
+              url: 'https://stg-portal.futuready.com/portal/pageproductplan',
+            },
+            {
+              title: 'Insurance',
+              url: 'https://stg-portal.futuready.com/portal/pageinsurance',
+            },
+            {
+              title: 'Product Category',
+              url: 'https://stg-portal.futuready.com/portal/pageproductcategory',
+            },
+            {
+              title: 'Travel',
+              url: 'https://stg-portal.futuready.com/portal/pagetravel',
+            },
+            {
+              title: 'Term Life',
+              url: 'https://stg-portal.futuready.com/portal/pagetermlife',
+            },
+            {
+              title: 'Vehicle',
+              url: 'https://stg-portal.futuready.com/portal/pagevehicle',
+            },
+          ],
+        },
+        {
+          title: 'Engagement Services',
+          icon: 'flaticon-network',
+          url: '/about',
+          subNav: [
+            {
+              title: 'Marketing',
+              url: 'https://stg-marketing.futuready.com/dashboard/index',
+            },
+            {
+              title: 'Entry Page',
+              url: 'https://stg-entrypage.futuready.com/entrypage/index',
+            },
+            {
+              title: 'Promo',
+              url: 'https://stg-promo.futuready.com/promo/promolist',
+            },
+            {
+              title: 'Voucher',
+              url: 'https://stg-voucher.futuready.com/voucher/voucherlist',
+            },
+            {
+              title: 'SEO',
+              url: '/',
+            },
+            {
+              title: 'Url Builder',
+              url: 'https://stg-urlbuilder.futuready.com/log_url/index',
+            },
+          ],
+        },
+        {
+          title: 'Operation',
+          icon: 'flaticon-graphic',
+          url: '/about',
+          subNav: [
+            {
+              title: 'Customer Service',
+              url: 'https://stg-csdashboard.futuready.com/list_transaksi',
+            },
+            {
+              title: 'Sales Process Monitoring',
+              url: 'https://stg-portal.futuready.com/portal/salesprocessmonitoring',
+            },
+          ],
+        },
+        {
+          title: 'Legal & Risk',
+          icon: 'flaticon-light',
+          url: '/about',
+          subNav: [
+            {
+              title: 'Sanction List',
+              url: 'https://stg-sanction.futuready.com/sanction/index',
+            },
+          ],
+        },
+        {
+          title: 'Finance',
+          icon: 'flaticon-line-graph',
+          url: '/about',
+          subNav: [
+            {
+              title: 'Finance Dashboard',
+              internalUrl: '/finance/dashboard/index',
+            },
+            {
+              title: 'Incentive & Commission',
+              url: 'https://stg-portal.futuready.com/portal/masterincentive',
+            },
+            {
+              title: 'Payment Channel',
+              url: 'https://stg-portal.futuready.com/payment_channel',
+            },
+          ],
+        },
+        {
+          title: 'Profile',
+          icon: 'flaticon-users',
+          url: '/about',
+          subNav: [
+            {
+              title: 'Profile List',
+              url: 'https://stg-portal.futuready.com/profile/profile',
+            },
+          ],
+        },
+        {
+          title: 'Channel',
+          icon: 'flaticon-computer',
+          url: '/about',
+          subNav: [
+            {
+              title: 'Referral',
+              url: 'https://stg-referral.futuready.com/referral/referrallist',
+            },
+          ],
+        },
+        {
+          title: 'Engagement Approach',
+          icon: 'flaticon-interface-7',
+          url: '/about',
+          subNav: [
+            {
+              title: 'VFS Dashboard',
+              url: 'https://stg-vfsdashboard.futuready.com/',
+            },
+            {
+              title: 'Event Dashboard',
+              url: 'https://eventdashboard.futuready.com/',
+            },
+          ],
+        },
+        {
+          title: 'Others',
+          icon: 'flaticon-signs-2',
+          url: '/about',
+          subNav: [
+            {
+              title: 'Autoworkshop',
+              url: 'https://stg-autoworkshop.futuready.com/autoworkshop/workshopList',
+            },
+            {
+              title: 'Automatic Workflow',
+              url: 'https://stg-workflow.futuready.com/workflow',
+            },
+          ],
+        },
+        {
+          title: 'Human Resource',
+          icon: 'flaticon-list-3',
+          url: '/about',
+          subNav: [
+            {
+              title: 'Attendance List',
+              url: 'https://stg-portal.futuready.com/attendance/attendance/index',
+            },
+          ],
+        },
+        {
+          title: 'Core',
+          icon: 'storage',
+          url: '/about',
+          subNav: [
+            {
+              title: 'Product Catalog',
+              url: 'https://stg-portal.futuready.com/core/master_insurer',
+            },
+          ],
+        },
       ],
     };
   },
