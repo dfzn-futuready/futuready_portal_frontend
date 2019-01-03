@@ -27,7 +27,7 @@
       mobile-break-point="960"
       :mini-variant.sync="mini"
       class="white darken-4 nav-drawer">
-      <v-list @mouseover="openDrawer" class="pt-0" dense>
+      <v-list @mouseover="openDrawer" class="pt-0">
         <v-list-tile to="/">
           <v-list-tile-action class="v-list__single">
             <v-icon color="blue-grey lighten-2">home</v-icon>
@@ -52,6 +52,7 @@
             <v-list-tile
               v-for="(catChild, i) in item.subNav"
               :key="i"
+              class="v-list__tile--link"
               active-class="grey--text text--darken-2"
             >
               <template v-if="catChild.internalUrl">
@@ -348,9 +349,34 @@ export default {
     padding-top: 72px;
     padding-bottom: 25px;
 
+    &.v-navigation-drawer--mini-variant {
+      .v-list__group:before, .v-list__group:after {
+        display: none
+      }
+      .v-list__group__items {
+        display: none;
+      }
+    }
+
+    .v-list__tile {
+      height: auto;
+      min-height: 48px;
+
+      .v-list__tile__title {
+        height: auto;
+        white-space: normal;
+        max-width: 125px;
+        font-size: 13px;
+        line-height: 20px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+    }
+
     .v-list__single + div {
       margin-left: -16px;
     }
+
     .v-list__group {
       .v-list__tile {
         padding: 0;
