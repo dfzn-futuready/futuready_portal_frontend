@@ -16,5 +16,8 @@
         testUrl: process.env.VUE_APP_API,
       };
     },
+    created() {
+      this.$store.dispatch('getBankAccountList');
+    }
   }
 </script>

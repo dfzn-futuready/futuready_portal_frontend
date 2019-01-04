@@ -1,3 +1,6 @@
+import axios from '../../../axios-instance';
+
+const { financeApi } = axios;
 
 const mutations = {
   EDIT_BANK_ACCOUNT(state, payload) {
@@ -8,11 +11,22 @@ const mutations = {
       }
     });
   },
+  GET_BANK_ACCOUNT_LIST(state, payload) {
+    const currentState = state;
+    currentState.bankAccountList = payload;
+  },
 };
 
 const actions = {
   editBankAccount: ({ commit }, bank) => {
     commit('EDIT_BANK_ACCOUNT', bank);
+  },
+  getBankAccountList: ({ commit }) => {
+    financeApi.get('/financebankaccount')
+      .then((response) => {
+        commit('GET_BANK_ACCOUNT_LIST', response.data);
+      })
+      .catch(err => err);
   },
 };
 
